@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<int>ans;
+        vector<vector<int>>result;
+        ans.push_back(1);
+        result.push_back(ans);
+        if(numRows==1) return result;
+        ans.push_back(1);
+        result.push_back(ans);
+        if(numRows==2) return result;
+        int count=2,n=2;
+        vector<int>arr=ans;
+        ans.clear();
+        while(count<numRows){
+            ans.push_back(1);
+            for(int i=0;i<n-1;i++){
+                int sum=arr[i]+arr[i+1];
+                ans.push_back(sum);
+                sum=0;
+            }
+            ans.push_back(1);
+            n=ans.size();
+            arr=ans;
+            result.push_back(ans);
+            ans.clear();
+            count++;
+        }
+        return result;
+    }
+};
