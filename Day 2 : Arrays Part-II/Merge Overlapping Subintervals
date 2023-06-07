@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>> nums;
+        sort(intervals.begin(),intervals.end());
+        vector<int>arr =intervals[0];
+
+        for(auto it:intervals){
+            if(it[0]<=arr[1]){
+                arr[1]=max(it[1],arr[1]);
+            }
+            else{
+                nums.push_back(arr);
+                arr=it;
+            }
+        } 
+        nums.push_back(arr);
+        return nums;
+    }
+};
